@@ -1,76 +1,6 @@
 <!DOCTYPE html>
 <html>
 <title>Joanne's Diary</title>
-<SCRIPT type="text/javascript" src="http://www.google.com/jsapi"></SCRIPT>
-
-<SCRIPT type="text/javascript" src="../js/jquery.js"></SCRIPT>
-	<SCRIPT type="text/javascript">
-
-        google.load("language", "1");
-
-$(document).ready(function () 
-
-{
-
-            $('#btnTrn').click(btnTrn_click);
-
-            $('#btnSayIt').click(SayIt);
-
-});
-
-
-
-function SayIt() {
-
-		var lng = $('#sltLng').val();
-
-		var Rlt = $('#trn').val();
-
-		var strURL = 'http://translate.google.com.tw/translate_tts?q=' + Rlt + '&tl=' + lng;
-
-		var embed = '<embed src="' + strURL + '"/>';
-
-		$('#divSayIt').html(embed);
-
-}
-
-
-
-function btnTrn_click() {
-
-		var srcTxt = $('#org').val();
-
-		var lng = $('#sltLng').val();
-
-		google.language.detect(srcTxt, 
-
-		function (result){
-
-			if (!result.error && result.language) {
-
-				google.language.translate(srcTxt, result.language, lng,
-
-					function (result) {
-
-						var trn = $('#trn');
-
-						if (result.translation) {
-
-							trn.val(result.translation);
-
-						}
-
-					}
-
-				);
-
-			}
-
-		});
-
- 	}
-
-</SCRIPT>
 <style>
   h1{
     margin-left:40px;
@@ -118,38 +48,10 @@ function btnTrn_click() {
   <li> Day5</li>
   <li> Day6</li>
 </ul>
-  <p>多雨。週二。禱告聚會。</p>
-  <BR>
-<TEXTAREA id="org" cols="40" rows="10"></TEXTAREA><BR>
- <SELECT id="sltLng">
-
-		<OPTION value="en">英文</OPTION>
-
-		<OPTION value="zh-TW">中文(繁體)</OPTION>
-
-		<OPTION value="zh-CN">中文(簡體)</OPTION>
-
-		<OPTION value="ja">日文</OPTION>
-
-		<OPTION value="ko">韓文</OPTION>
-
-		<OPTION value="th">泰文</OPTION>
-
-		<OPTION value="de">德文</OPTION>
-
-		<OPTION value="fr">法文</OPTION>
-
-	</SELECT>
-
-<INPUT id="btnTrn" value="翻譯" type="button">
-
-<HR>
-
-翻譯結果：<BR>
-
-<TEXTAREA id="trn" cols="40" rows="10"></TEXTAREA><BR>
-
-<INPUT id="btnSayIt" value="發音" type="button"><BR>
-
-<DIV id="divSayIt"></DIV> 
+  <p>晴天。週二。爸爸節。</p>
+  <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'zh-TW'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </html>
